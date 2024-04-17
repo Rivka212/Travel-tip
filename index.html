@@ -73,6 +73,18 @@
             </section>
         </div>
     </main>
+    <dialog class="loc-edit-modal">
+        <form onsubmit="app.onSaveLoc()" method="dialog">
+            <h2>Add Location</h2>
+            <input class="new-loc" type="text" name="new-loc" placeholder="Enter location...">
+           <label for="rate">Rate:
+            <input type="number" class="rate" value="5" min="0" max="5"></label>
+            <div class="actions">
+                <button type="button" onclick="app.onCloseLocEdit()">Cancel</button>
+                <button>Save</button>
+            </div>
+        </form>
+    </dialog>
     <pre class="debug" hidden></pre>
     <div class="user-msg"></div>
     <script type="module" src="js/app.controller.js"></script>
