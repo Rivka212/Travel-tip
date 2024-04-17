@@ -20,8 +20,6 @@ window.app = {
     onSetFilterBy,
     onSaveLoc,
     onCloseLocEdit,
-    gLocToEdit,
-    gLocToAdd
 }
 
 var gUserPos
@@ -138,6 +136,7 @@ function onSaveLoc() {
             flashMsg(`Cannot ${msg.info} location`)
         })
     gLocToEdit = null
+    gLocToAdd = null
 }
 
 
