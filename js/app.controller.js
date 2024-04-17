@@ -145,41 +145,23 @@ function onAddLoc(geo) {
     const rate = document.querySelector('.rate').value
     console.log(geo);
     elModal.showModal(geo.address)
-    // const locName = prompt('Loc name', geo.address || 'Just a place')
-    // if (!locName) return
+
     const loc = {
         name: locName,
         rate: rate,
         geo
     }
     gLocToAdd = loc
-    // console.log(gLocToAdd);
 
-
-    // const loc = {
-    //     name: locName,
-    //     rate: +prompt(`Rate (1-5)`, '3'),
-    //     geo
-    // }
-    // locService.save(loc)
-    //     .then((savedLoc) => {
-    //         flashMsg(`Added Location (id: ${savedLoc.id})`)
-    //         utilService.updateQueryParams({ locId: savedLoc.id })
-    //         loadAndRenderLocs()
-    //     })
-    //     .catch(err => {
-    //         console.error('OOPs:', err)
-    //         flashMsg('Cannot add location')
-    //     })
 }
 
 function loadAndRenderLocs() {
     locService.query()
         .then(renderLocs)
-        // .catch(err => {
-        //     console.error('OOPs:', err)
-        //     flashMsg('Cannot load locations')
-        // })
+        .catch(err => {
+            console.error('OOPs:', err)
+            flashMsg('Cannot load locations')
+        })
 }
 
 function onPanToUserPos() {
@@ -200,31 +182,15 @@ function onPanToUserPos() {
 function onUpdateLoc(locId) {
     locService.getById(locId)
         .then(loc => {
-            console.log(loc);
+            // console.log(loc);
             gLocToEdit = loc
             const newLoc = document.querySelector('.new-loc').value = loc.name
             const rate = document.querySelector('.rate').value = loc.rate
         })
-
     const elModal = document.querySelector('.loc-edit-modal')
     elModal.querySelector('h2').innerText = 'Edit Location'
     elModal.showModal()
-    // .then(loc => {
-    // const rate = prompt('New rate?', loc.rate)
-    //     elModal.showModal()
-    //     if (rate !== loc.rate) {
-    //         loc.rate = rate
-    //         locService.save(loc)
-    //             .then(savedLoc => {
-    //                 flashMsg(`Rate was set to: ${savedLoc.rate}`)
-    //                 loadAndRenderLocs()
-    //             })
-    //             .catch(err => {
-    //                 console.error('OOPs:', err)
-    //                 flashMsg('Cannot update location')
-    //             })
-    //     }
-    // })
+ 
 }
 
 function onSelectLoc(locId) {
