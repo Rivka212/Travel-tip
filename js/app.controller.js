@@ -107,14 +107,15 @@ function onSaveLoc() {
     const locName = document.querySelector('.new-loc').value
     const rate = document.querySelector('.rate').value
     console.log(locName, rate);
+    var loc = null
     var msg = {}
     if (gLocToEdit) {
         msg = { txt: `Rate was set to:`, value: rate, info: 'update' }
-        var loc = gLocToEdit
+        loc = gLocToEdit
         loc.rate = rate
     } else {
         msg = { txt: `Added Location ,id:`, value: 'id', info: 'add' }
-        var loc = gLocToAdd
+        loc = gLocToAdd
         loc.rate = rate
     }
     locService.save(loc)
@@ -175,10 +176,10 @@ function onAddLoc(geo) {
 function loadAndRenderLocs() {
     locService.query()
         .then(renderLocs)
-        .catch(err => {
-            console.error('OOPs:', err)
-            flashMsg('Cannot load locations')
-        })
+        // .catch(err => {
+        //     console.error('OOPs:', err)
+        //     flashMsg('Cannot load locations')
+        // })
 }
 
 function onPanToUserPos() {
