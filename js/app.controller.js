@@ -18,6 +18,8 @@ window.app = {
     onSetFilterBy,
 }
 
+var gUserPos
+
 function onInit() {
     loadAndRenderLocs()
 
@@ -37,10 +39,16 @@ function renderLocs(locs) {
     // console.log('locs:', locs)
     var strHTML = locs.map(loc => {
         const className = (loc.id === selectedLocId) ? 'active' : ''
+        var distanceHtml = ''
+        if(gUserPos) {
+            const distance = utilService.getDistance(gUserPos, loc.geo, 'K')
+            distanceHtml = `<span class="distance">Distance: ${distance} KM</span>`
+        }
         return `
         <li class="loc ${className}" data-id="${loc.id}">
             <h4>  
                 <span>${loc.name}</span>
+                ${distanceHtml} 
                 <span title="${loc.rate} stars">${'★'.repeat(loc.rate)}</span>
             </h4>
             <p class="muted">
@@ -129,9 +137,10 @@ function loadAndRenderLocs() {
 function onPanToUserPos() {
     mapService.getUserPosition()
         .then(latLng => {
-            console.log(latLng);
-            mapService.panTo({ ...latLng, zoom: 15 })
             unDisplayLoc()
+            gUserPos = latLng
+            // console.log(latLng)
+            mapService.panTo({ ...latLng, zoom: 15 })
             loadAndRenderLocs()
             flashMsg(`You are at Latitude: ${latLng.lat} Longitude: ${latLng.lng}`)
         })
@@ -177,9 +186,15 @@ function displayLoc(loc) {
     mapService.panTo(loc.geo)
     mapService.setMarker(loc)
 
+    var distanceText = ''
+    if(gUserPos) {
+        const distance = utilService.getDistance(gUserPos, loc.geo, 'K')
+        distanceText = 'Distance:' + distance + 'KM'
+    }
     const el = document.querySelector('.selected-loc')
     el.querySelector('.loc-name').innerText = loc.name
     el.querySelector('.loc-address').innerText = loc.geo.address
+    el.querySelector('.distance').innerText = distanceText
     el.querySelector('.loc-rate').innerHTML = '★'.repeat(loc.rate)
     el.querySelector('[name=loc-copier]').value = window.location
     el.classList.add('show')
