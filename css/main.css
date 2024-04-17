@@ -1,6 +1,7 @@
 @import url(base/vars.css);
 @import url(base/base.css);
 @import url(cmps/user-msg.css);
+@import url(cmps/dialog.css);
 @import url(cmps/locs.css);
 @import url(cmps/selected-loc.css);
 

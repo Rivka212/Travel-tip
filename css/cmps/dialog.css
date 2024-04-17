@@ -1,0 +1,35 @@
+dialog.loc-edit-modal {
+    padding: 2em;
+    background: linear-gradient(to bottom, #eee, #fff);
+    border: 1px solid rgb(104, 97, 97)
+}
+
+dialog.loc-edit-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
+}
+
+dialog.loc-edit-modal form>h2 {
+    margin-block-end: .5em;
+}
+
+
+dialog.loc-edit-modal form>input {
+    align-self: start;
+    height: 1.6em;
+    border: 1px solid lightgray;
+}
+
+dialog.loc-edit-modal form .actions {
+    margin-block-start: 1em;
+}
+
+dialog.loc-edit-modal form .actions >button{
+   background-color: var(--bg1);
+}
+
+dialog *:focus {
+    outline: 1px solid gray;
+}
