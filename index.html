@@ -8,7 +8,7 @@
     <title>TravelTip</title>
 </head>
 
-<body>
+<body class="purple-theme">
     <header>
         <h1>TravelTip</h1>
         <section class="selected-loc">
@@ -19,6 +19,11 @@
             <button onclick="app.onShareLoc()">Share location</button>
             <input name="loc-copier" />
         </section>
+        <select class="theme-select" name="theme-select" id="theme-select" onchange="app.onSetThemeColor()">
+            <option value="purple">purple</option>
+            <option value="light">light</option>
+            <option value="blue"> blue</option>
+        </select>
         <form class="form-search" onsubmit="app.onSearchAddress(event)">
             <input type="text" name="address" placeholder="Search address" />
             <button title="Search">🔍</button>
@@ -77,8 +82,8 @@
         <form onsubmit="app.onSaveLoc()" method="dialog">
             <h2>Add Location</h2>
             <input class="new-loc" type="text" name="new-loc" placeholder="Enter location...">
-           <label for="rate">Rate:
-            <input type="number" class="rate" value="5" min="0" max="5"></label>
+            <label for="rate">Rate:
+                <input type="number" class="rate" value="5" min="0" max="5"></label>
             <div class="actions">
                 <button type="button" onclick="app.onCloseLocEdit()">Cancel</button>
                 <button>Save</button>

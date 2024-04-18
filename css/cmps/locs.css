@@ -13,6 +13,7 @@
     padding-bottom: .2em;
     border-bottom: 1px solid #222;
 }
+
 .loc-list li h4 {
     display: flex;
     justify-content: space-between;
@@ -22,7 +23,7 @@
     color: var(--color3);
 }
 
-.loc-list li.active .muted{
+.loc-list li.active .muted {
     color: var(--color4);
 }
 
@@ -47,6 +48,7 @@
     width: 2em;
     height: 2em;
 }
+
 .btn-user-pos:hover {
     background-color: whitesmoke;
 }
@@ -81,4 +83,10 @@
     width: 1em;
     height: 1em;
     margin-inline-end: 0.3em;
+}
+
+.theme-select {
+    display: block;
+    margin-left: auto;
+    margin-bottom: .5em;
 }

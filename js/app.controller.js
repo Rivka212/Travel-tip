@@ -20,6 +20,7 @@ window.app = {
     onSetFilterBy,
     onSaveLoc,
     onCloseLocEdit,
+    onSetThemeColor
 }
 
 var gUserPos
@@ -44,7 +45,7 @@ function renderLocs(locs) {
     var strHTML = locs.map(loc => {
         const className = (loc.id === selectedLocId) ? 'active' : ''
         var distanceHtml = ''
-        if(gUserPos) {
+        if (gUserPos) {
             const distance = utilService.getDistance(gUserPos, loc.geo, 'K')
             distanceHtml = `<span class="distance">Distance: ${distance} KM</span>`
         }
@@ -198,7 +199,7 @@ function onUpdateLoc(locId) {
     const elModal = document.querySelector('.loc-edit-modal')
     elModal.querySelector('h2').innerText = 'Edit Location'
     elModal.showModal()
- 
+
 }
 
 function onSelectLoc(locId) {
@@ -218,7 +219,7 @@ function displayLoc(loc) {
     mapService.setMarker(loc)
 
     var distanceText = ''
-    if(gUserPos) {
+    if (gUserPos) {
         const distance = utilService.getDistance(gUserPos, loc.geo, 'K')
         distanceText = 'Distance:' + distance + 'KM'
     }
@@ -355,4 +356,11 @@ function cleanStats(stats) {
         return acc
     }, [])
     return cleanedStats
+}
+
+
+function onSetThemeColor() {
+    const themeSelect = document.getElementById('theme-select').value
+    document.body.classList.remove('blue-theme', 'light-theme', 'purple-theme')
+    document.body.classList.add(themeSelect + '-theme')
 }
