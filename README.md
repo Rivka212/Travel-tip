@@ -80,7 +80,7 @@ window.app = {
     onShareLoc,
     onSetSortBy,
     onSetFilterBy,
-     onSaveLoc,
+    onSaveLoc,
     onCloseLocEdit,
 }
 ```
